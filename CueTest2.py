@@ -61,19 +61,21 @@ if __name__ == '__main__':
     cue_fig = plt.figure()
     plt.ion()
     print(cue_delay)
-    while i <= len((Rest_Cues)) - 1:
+    cue_times = np.zeros((len(Rest_Cues), 1))
+    while i <= len(Rest_Cues) - 1:
         print(i)
         if Rest_Cues[i] == 0:
             # Set up the cue image
             Cue_Name = Rest_img
             #plt.imshow(mpimg.imread(cue_images[cue]))
+            plt.clf()
             plt.imshow(Cue_Name)
             plt.axis('off')
             plt.show(block=False)
 
             # Wait through the delay
             t0 = time.perf_counter()
-            print(t0)
+
             while (time.perf_counter() - t0) < cue_delay:
                  cue_fig.canvas.flush_events()
 
@@ -81,13 +83,13 @@ if __name__ == '__main__':
             # Set up the cue image
             Cue_Name = Up_img
             #plt.imshow(mpimg.imread(cue_images[cue]))
+            plt.clf()
             plt.imshow(Cue_Name)            
             plt.axis('off')
             plt.show(block=False)
 
             # Wait through the delay
             t0 = time.perf_counter()
-            print(t0)
             while (time.perf_counter() - t0) < cue_delay:
                  cue_fig.canvas.flush_events()
 
@@ -95,13 +97,13 @@ if __name__ == '__main__':
             # Set up the cue image
             Cue_Name = Down_img
             #plt.imshow(mpimg.imread(cue_images[cue]))
+            plt.clf()
             plt.imshow(Cue_Name)
             plt.axis('off')
             plt.show(block=False)
 
             # Wait through the delay
             t0 = time.perf_counter()
-            print(t0)
             while (time.perf_counter() - t0) < cue_delay:
                  cue_fig.canvas.flush_events()
 
@@ -109,13 +111,13 @@ if __name__ == '__main__':
             # Set up the cue image
             Cue_Name = Left_img
             #plt.imshow(mpimg.imread(cue_images[cue]))
+            plt.clf()
             plt.imshow(Cue_Name)
             plt.axis('off')
             plt.show(block=False)
 
             # Wait through the delay
             t0 = time.perf_counter()
-            print(t0)
             while (time.perf_counter() - t0) < cue_delay:
                  cue_fig.canvas.flush_events()
             # Increment i
@@ -124,16 +126,20 @@ if __name__ == '__main__':
             # Set up the cue image
             Cue_Name = Right_img
             #plt.imshow(mpimg.imread(cue_images[cue]))
+            plt.clf()
             plt.imshow(Cue_Name)
             plt.axis('off')
             plt.show(block=False)
 
             # Wait through the delay
             t0 = time.perf_counter()
-            print(t0)
             while (time.perf_counter() - t0) < cue_delay:
                  cue_fig.canvas.flush_events()
         
+
+        cue_times[i] = t0
+        if i>0:
+            print(cue_times[i] - cue_times[i-1])
         #increment i
         i += 1
 
